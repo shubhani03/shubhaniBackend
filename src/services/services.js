@@ -4,18 +4,16 @@ const bcrypt = require("bcrypt");
 
 const CreateAdmin = async (userData) => {
   try {
-    let { firstName, lastName, email, password, mob } = userData;
+    let { name, email, password } = userData;
     const userExist = await Admin.findOne({ email });
     if (userExist) {
       throw new error("user already exist with email : ", email);
     }
     password = await bcrypt.hash(password, 8);
     const user = await Admin.create({
-      firstName,
-      lastName,
+      name,
       email,
       password,
-      mob,
     });
     return user;
   } catch (error) {
