@@ -24,7 +24,7 @@ const createOrder = async (req, res) => {
       let createdOrderItems = await orderItem.save();
       orderItems1.push(createdOrderItems);
     }
-    console.log("updated Store :  ", updateProduct);
+
     let createCustomer = new Customer({
       customerName: req.body.customer.customerName,
       mobileNumber: req.body.customer.mobileNumber,
@@ -70,7 +70,7 @@ const createOrder = async (req, res) => {
     let updateStore = updateProduct.map((item) => {
       updateFun(item._id, item.quantity);
     });
-    console.log(updateStore);
+
     res
       .status(200)
       .send({ message: "order successfully...", success: true, saveOrder });
