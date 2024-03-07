@@ -10,6 +10,7 @@ const {
   createProduct,
   getAllProduct,
   updateProduct,
+  deleteProduct,
 } = require("../services/product.service.js");
 const authMiddleWare = require("../middleware/authmidleware.js");
 const {
@@ -18,28 +19,16 @@ const {
   getAllOrders,
 } = require("../services/order.service.js");
 
-// const authMiddleWare = require("../middlewares/authMiddleWare");
-
 const router = express.Router();
 router.post("/login", AdminLogin);
 router.post("/register", AdminRegister);
 router.post("/createproduct", createProduct);
 router.put("/updateoneproduct/:id", updateProduct);
+router.put("/deleteProduct/:id", deleteProduct);
 router.get("/getallproduct", getAllProduct);
 router.post("/getUserData", authMiddleWare, authController);
 router.post("/createorders", createOrder);
 router.get("/getallcustomerorder", getAllOrderOfCustomer);
 router.get("/getallorders", getAllOrders);
 
-// router.post("/getUserData", authMiddleWare, authController);
-// router.post("/applyDoctor", authMiddleWare, applyDoctorController);
-// router.post("/getAllNotification", authMiddleWare, getAllNotificationConroller);
-// router.post(
-//   "/deleteAllNotification",
-//   authMiddleWare,
-//   deleteAllNotificationConroller
-// );
-
-// router.get("/getAllDoctor", authMiddleWare, getAllDoctor);
-// router.post("/book-appointments", authMiddleWare, bookAppointmentController);
 module.exports = router;
