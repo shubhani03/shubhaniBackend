@@ -16,15 +16,10 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, "quantity is require"],
   },
+  unit: {
+    type: String,
+  },
 });
 
 const Product = mongoose.model("products", productSchema);
 module.exports = Product;
-
-// const userschema = mongoose.Schema({
-//   name: String,
-//   email: String,
-//   password: String,
-// });
-
-// module.exports = mongoose.model("users", userschema);
