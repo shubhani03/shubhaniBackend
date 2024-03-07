@@ -6,6 +6,7 @@ const createProduct = async (req, res) => {
       category: req.body.category,
       rate: req.body.rate,
       quantity: req.body.quantity,
+      unit: req.body.unit,
     });
     await product.save();
     res
@@ -16,11 +17,15 @@ const createProduct = async (req, res) => {
   }
 };
 
-const deleteProduct = async (productId) => {
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+
   try {
-    let product = await findProductById(productId);
-    await Product.findByIdAndDelete(product._id);
-    return "product deleted successfully";
+    // let product = await findProductById(id);
+    await Product.findByIdAndDelete(id);
+    res
+      .status(200)
+      .send({ message: "delete successfully...  ", success: true });
   } catch (error) {
     throw new Error(error.message);
   }
